@@ -14,7 +14,7 @@
       .print-only { display: block !important; }
       body { background-color: #ffffff; color: #000000; }
     }
-    .svg-box svg {
+    .svg-diagram svg {
       max-width: 100%;
       height: auto;
     }
@@ -100,7 +100,7 @@
       <div id="loginMsg" class="mt-4 text-center text-xs font-bold hidden"></div>
     </section>
 
-    <!-- 2. PORTAL MURID -->
+    <!-- 2. PORTAL PEPERIKSAAN MURID -->
     <section id="examSection" class="hidden space-y-6">
       
       <!-- KAD KEPUTUSAN GURU -->
@@ -159,36 +159,36 @@
       <!-- BORANG SOALAN LENGKAP -->
       <form id="soalanForm" onsubmit="event.preventDefault();" class="space-y-8">
 
-        <!-- BAHAGIAN A -->
+        <!-- ==================== BAHAGIAN A ==================== -->
         <div class="border-b-2 border-indigo-700 pb-2 flex justify-between items-center">
           <h3 class="text-lg font-black text-indigo-950 uppercase tracking-wide">
             <i class="fa-solid fa-list-check mr-2 text-indigo-600"></i>Bahagian A [15 Markah]
           </h3>
-          <span class="text-xs font-bold text-slate-500">Soalan Objektif (1-15)</span>
+          <span class="text-xs font-bold text-slate-500">Jawab Semua Soalan Objektif</span>
         </div>
         <div id="bahagianA_container" class="space-y-6"></div>
 
-        <!-- BAHAGIAN B -->
+        <!-- ==================== BAHAGIAN B ==================== -->
         <div class="border-b-2 border-indigo-700 pb-2 pt-6 flex justify-between items-center">
           <h3 class="text-lg font-black text-indigo-950 uppercase tracking-wide">
             <i class="fa-solid fa-pen-to-square mr-2 text-indigo-600"></i>Bahagian B [45 Markah]
           </h3>
-          <span class="text-xs font-bold text-slate-500">Soalan Subjektif & Padanan (1-15)</span>
+          <span class="text-xs font-bold text-slate-500">Jawab Semua Soalan Subjektif & Padanan</span>
         </div>
         <div id="bahagianB_container" class="space-y-6"></div>
 
-        <!-- BAHAGIAN C -->
+        <!-- ==================== BAHAGIAN C ==================== -->
         <div class="border-b-2 border-indigo-700 pb-2 pt-6 flex justify-between items-center">
           <h3 class="text-lg font-black text-indigo-950 uppercase tracking-wide">
             <i class="fa-solid fa-compass-drafting mr-2 text-indigo-600"></i>Bahagian C [40 Markah]
           </h3>
-          <span class="text-xs font-bold text-slate-500">Soalan Aplikasi Reka Bentuk (1-4)</span>
+          <span class="text-xs font-bold text-slate-500">Jawab Semua Soalan Aplikasi Reka Bentuk</span>
         </div>
         <div id="bahagianC_container" class="space-y-6"></div>
 
         <!-- Butang Hantar Semua -->
         <div class="bg-white p-6 rounded-2xl shadow border border-slate-200 text-center space-y-3 no-print">
-          <p class="text-xs text-slate-500">Pastikan anda telah menyemak semua jawapan Bahagian A, B dan C sebelum menghantar.</p>
+          <p class="text-xs text-slate-500">Pastikan anda telah menyemak semua jawapan Bahagian A, B dan C sebelum menghantar secara muktamad.</p>
           <button type="button" onclick="submitSemuaJawapan()" id="btnHantarSemua" class="px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm rounded-xl shadow-lg transition transform hover:-translate-y-0.5">
             <i class="fa-solid fa-paper-plane mr-2"></i> Hantar Semua Jawapan Peperiksaan
           </button>
@@ -240,7 +240,7 @@
             <h2 class="text-xl font-black text-slate-900 flex items-center">
               <i class="fa-solid fa-robot text-amber-500 mr-2"></i> Ruang Semakan & Penandaan AI
             </h2>
-            <p class="text-xs text-slate-500">Cadangan markah pintar berasaskan kata kunci skema rasmi DSKP Tingkatan 1.</p>
+            <p class="text-xs text-slate-500">Cadangan markah pintar berasaskan skema rasmi DSKP Tingkatan 1.</p>
           </div>
           <div class="flex items-center space-x-2">
             <button onclick="terapkanSemuaCadanganAI()" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-indigo-950 text-xs font-black rounded-xl shadow transition">
@@ -297,12 +297,10 @@
     Latihan Menjelang UASA Tingkatan 1 &copy; 2026. Dikuasakan oleh GitHub Pages & Google Apps Script.
   </footer>
 
-  <!-- SKRIP LOGIK SISTEM -->
+  <!-- LOGIK JAVASCRIPT SISTEM -->
   <script>
-    // URL Web App Terkini
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz4N_yxYvidxMDqocMffbeezH-TBTHlx5i-P1lWl3_yCOmZWtPnb2QfAgh_fKDagTy2/exec";
 
-    // Senarai 23 Murid Tingkatan 1
     const SENARAI_MURID = [
       { nama: "ALIF DANISH BIN MOHD SAIFULLYZAN SHAH", ic: "130325010625" },
       { nama: "ANNUR AFIA RAISHA BINTI AMRI", ic: "130123010424" },
@@ -329,60 +327,61 @@
       { nama: "ZAINOL WANALIFF BIN EZADIN", ic: "130409011043" }
     ];
 
-    // Bank Soalan & Skema Lengkap
+    // BANK SOALAN & SKEMA LENGKAP MENGIKUT DOKUMEN PEPERIKSAAN
     const DATA_SOALAN = {
       // ===== BAHAGIAN A (15 MARKAH) =====
       "a1": {
-        bahagian: "A", no: 1, tajuk: "Soalan 1 - Definisi RBT", max: 1,
+        bahagian: "A", no: 1, tajuk: "Soalan 1", max: 1,
         soalan: "Nyatakan definisi reka bentuk dan teknologi.",
         pilihan: [
           "A. Penghasilan produk berinovasi yang memenuhi keperluan dan kehendak individu",
           "B. Pengetahuan dan aplikasi bidang sains dan matematik dalam penciptaan produk inovasi",
           "C. Penggunaan pengetahuan sains dan matematik untuk menghasilkan kaedah mencipta susunan bahan terancang",
-          "D. Penggabungan pengetahuan tentang penyusunan bahan secara terancang dengan mengaplikasikan pengetahuan sains dan matematik"
+          "D. Penggabungan pengetahuan tentang penyusunan bahan secara terancang dengan mengaplikasikan pengetahuan sains dan matematik."
         ],
         jawapanTepat: "D",
         skema: "D - Penggabungan pengetahuan tentang penyusunan bahan secara terancang dengan mengaplikasikan pengetahuan sains dan matematik."
       },
       "a2": {
-        bahagian: "A", no: 2, tajuk: "Soalan 2 - Elemen Reka Bentuk", max: 1,
+        bahagian: "A", no: 2, tajuk: "Soalan 2", max: 1,
         soalan: "Antara berikut yang manakah elemen reka bentuk?<br>I. Garisan, rupa dan bentuk<br>II. Harmoni, kontras dan tekstur<br>III. Warna, tekstur, ruang dan saiz<br>IV. Garisan, keseimbangan dan warna",
         pilihan: ["A. I dan III", "B. I dan II", "C. II dan IV", "D. III dan IV"],
         jawapanTepat: "A",
-        skema: "A - I dan III (Harmoni, kontras dan keseimbangan ialah prinsip)."
+        skema: "A - I dan III."
       },
       "a3": {
-        bahagian: "A", no: 3, tajuk: "Soalan 3 - Keseimbangan Asimetri", max: 1,
+        bahagian: "A", no: 3, tajuk: "Soalan 3", max: 1,
         soalan: "Antara berikut yang manakah menunjukkan prinsip keseimbangan asimetri?",
         svgVisual: `
           <div class="grid grid-cols-2 md:grid-cols-4 gap-2 my-2 text-center text-xs">
             <div class="p-2 border rounded-lg bg-slate-50"><svg width="100" height="60" viewBox="0 0 100 60" class="mx-auto"><path d="M10 40 Q25 15 50 25 Q75 10 90 40 L85 50 L15 50 Z" fill="#64748b" /><line x1="20" y1="50" x2="20" y2="58" stroke="#334155" stroke-width="3"/><line x1="80" y1="50" x2="80" y2="58" stroke="#334155" stroke-width="3"/></svg><strong>A (Sofa Asimetri)</strong></div>
             <div class="p-2 border rounded-lg bg-slate-50"><svg width="100" height="60" viewBox="0 0 100 60" class="mx-auto"><text x="50" y="42" font-size="34" font-weight="black" text-anchor="middle" fill="#0f172a">HH</text></svg><strong>B</strong></div>
             <div class="p-2 border rounded-lg bg-slate-50"><svg width="100" height="60" viewBox="0 0 100 60" class="mx-auto"><rect x="25" y="10" width="18" height="45" fill="#94a3b8"/><rect x="57" y="10" width="18" height="45" fill="#94a3b8"/><line x1="43" y1="30" x2="57" y2="30" stroke="#475569" stroke-width="3"/><polygon points="34,2 29,10 39,10" fill="#475569"/><polygon points="66,2 61,10 71,10" fill="#475569"/></svg><strong>C (KLCC)</strong></div>
-            <div class="p-2 border rounded-lg bg-slate-50"><svg width="100" height="60" viewBox="0 0 100 60" class="mx-auto"><path d="M30 10 L40 18 L50 12 L60 18 L70 10 L85 22 L75 55 L25 55 L15 22 Z" fill="#d97706"/></svg><strong>D (Kemeja Corak)</strong></div>
+            <div class="p-2 border rounded-lg bg-slate-50"><svg width="100" height="60" viewBox="0 0 100 60" class="mx-auto"><path d="M30 10 L40 18 L50 12 L60 18 L70 10 L85 22 L75 55 L25 55 L15 22 Z" fill="#d97706"/></svg><strong>D (Kemeja Batik)</strong></div>
           </div>
         `,
-        pilihan: ["A. Kerusi / sofa rehat asimetri", "B. Simetri berulang (HH)", "C. Menara Berkembar Petronas", "D. Kemeja corak batik simetri"],
+        pilihan: ["A. Sofa asimetri", "B. HH", "C. Menara Berkembar Petronas", "D. Kemeja corak simetri"],
         jawapanTepat: "A",
-        skema: "A - Sofa/kerusi beralun menunjukkan keseimbangan asimetri."
+        skema: "A - Sofa rehat beralun (Keseimbangan asimetri)."
       },
       "a4": {
-        bahagian: "A", no: 4, tajuk: "Soalan 4 - Kriteria Reka Bentuk Baik", max: 1,
+        bahagian: "A", no: 4, tajuk: "Soalan 4", max: 1,
         soalan: "Antara berikut, yang manakah kriteria reka bentuk yang baik?<br>I. Kreativiti<br>II. Ergonomik<br>III. Mesra alam sekitar<br>IV. Kecenderungan inovasi",
-        pilihan: ["A. I, II dan III", "B. I, II dan IV", "C. I, III dan IV", "D. Semua di atas"],
+        pilihan: ["A. I, II dan III", "B. I, II dan IV", "C. I, III dan IV", "D. II, III dan IV"],
         jawapanTepat: "D",
-        skema: "D - Keempat-empat kriteria adalah tepat."
+        skema: "D (atau gabungan utama kriteria reka bentuk baik)."
       },
       "a5": {
-        bahagian: "A", no: 5, tajuk: "Soalan 5 - Teknik Pembinaan Objek Asas", max: 1,
-        soalan: "Rajah menunjukkan satu teknik pembinaan objek asas di mana bahagian objek dibuang.<br>Nyatakan nama teknik itu.",
+        bahagian: "A", no: 5, tajuk: "Soalan 5", max: 1,
+        soalan: "Rajah 1 di bawah menunjukkan satu teknik pembinaan objek asas.<br>Nyatakan nama teknik itu.",
         svgVisual: `
-          <div class="my-2 p-3 bg-slate-50 border rounded-xl flex justify-center">
-            <svg width="140" height="80" viewBox="0 0 140 80">
-              <rect x="20" y="15" width="80" height="50" fill="#cbd5e1" stroke="#334155" stroke-width="2"/>
-              <path d="M60 15 L60 40 L100 40" fill="#ffffff" stroke="#ef4444" stroke-width="2" stroke-dasharray="3,3"/>
-              <text x="80" y="32" font-size="10" font-weight="bold" fill="#ef4444" text-anchor="middle">Dibuang</text>
+          <div class="my-2 p-3 bg-slate-50 border rounded-xl flex flex-col items-center">
+            <svg width="150" height="80" viewBox="0 0 150 80">
+              <rect x="25" y="15" width="100" height="50" fill="#cbd5e1" stroke="#334155" stroke-width="2"/>
+              <path d="M75 15 L75 40 L125 40" fill="#ffffff" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+              <text x="100" y="32" font-size="10" font-weight="bold" fill="#dc2626" text-anchor="middle">Sebahagian Dibuang</text>
             </svg>
+            <span class="text-xs text-slate-500 font-bold mt-1">Rajah 1</span>
           </div>
         `,
         pilihan: ["A. Pembenaman", "B. Pembuangan", "C. Penyatuan", "D. Peleraian"],
@@ -390,44 +389,44 @@
         skema: "B - Pembuangan."
       },
       "a6": {
-        bahagian: "A", no: 6, tajuk: "Soalan 6 - Kepentingan RBT", max: 1,
+        bahagian: "A", no: 6, tajuk: "Soalan 6", max: 1,
         soalan: "Antara berikut, yang manakah kepentingan reka bentuk dan teknologi?<br>I. Menyumbang kepada perkembangan teknologi moden<br>II. Memenuhi kehendak individu dan masyarakat<br>III. Membuka laluan kerjaya dan pekerjaan<br>IV. Melahirkan masyarakat yang kreatif",
         pilihan: ["A. I, II, dan III", "B. I, II, dan IV", "C. I, III, dan IV", "D. II, III, dan IV"],
         jawapanTepat: "A",
         skema: "A - I, II, dan III."
       },
       "a7": {
-        bahagian: "A", no: 7, tajuk: "Soalan 7 - Definisi Invensi", max: 1,
+        bahagian: "A", no: 7, tajuk: "Soalan 7", max: 1,
         soalan: "Nyatakan definisi invensi.",
         pilihan: [
-          "A. Gabungan pengetahuan tentang penyusunan bahan secara terancang dengan mengaplikasikan sains dan matematik",
-          "B. Proses atau kaedah yang dijalankan untuk menghasilkan produk atau perkhidmatan yang baharu serta belum pernah wujud sebelumnya",
+          "A. Gabungan pengetahuan tentang penyusunan bahan secara terancang dengan mengaplikasikan pengetahuan sains dan matematik",
+          "B. Proses atau kaedah yang dijalankan untuk menghasilkan produk atau perkhidmatan yang baru",
           "C. Pengubahsuaian terhadap produk sedia ada supaya menjadi lebih baik dan mesra pengguna",
           "D. Pengaplikasian ilmu sains dan matematik dengan menggunakan sumber semula jadi"
         ],
         jawapanTepat: "B",
-        skema: "B - Kaedah dan proses menghasilkan produk atau perkhidmatan yang baharu."
+        skema: "B - Kaedah untuk menghasilkan produk atau perkhidmatan baharu."
       },
       "a8": {
-        bahagian: "A", no: 8, tajuk: "Soalan 8 - Definisi Pengurusan Projek", max: 1,
-        soalan: "Nyatakan definisi pengurusan projek reka bentuk.",
+        bahagian: "A", no: 8, tajuk: "Soalan 8", max: 1,
+        soalan: "Nyatakan definisi pengurusan projek reka bentuk?",
         pilihan: [
-          "A. Pengurusan pelaksanaan projek melibatkan langkah kerja untuk memperoleh peralatan dan bahan",
-          "B. Pengurusan projek reka bentuk bermula daripada merancang aktiviti projek",
-          "C. Pengurusan projek yang utama bagi memastikan objektif tercapai",
-          "D. Aktiviti kerja yang melibatkan proses kerja iaitu skop kerja, tempoh masa dan kos projek"
+          "A. Pengurusan pelaksanaan projek melibatkan langkah kerja untuk memperoleh peralatan, bahan dan kemahiran supaya projek dapat disiapkan.",
+          "B. Pengurusan projek reka bentuk yang baik bermula daripada merancang aktiviti projek, menyediakan pelan atau reka bentuk produk.",
+          "C. Pengurusan projek yang paling utama dan menjadi penentu objektif sesuatu projek yang baik dan dapat memastikan objektif tercapai.",
+          "D. Pengurusan projek reka bentuk merupakan aktiviti kerja yang melibatkan proses kerja iaitu skop kerja, tempoh masa dan kos projek."
         ],
         jawapanTepat: "D",
         skema: "D - Melibatkan proses kerja iaitu skop kerja, tempoh masa dan kos projek."
       },
       "a9": {
-        bahagian: "A", no: 9, tajuk: "Soalan 9 - Penjanaan Idea Kasut Pasu", max: 1,
-        soalan: "Rajah menunjukkan kasut but yang digunakan untuk menanam sayur.<br>Nyatakan jenis penjanaan idea reka bentuk itu.",
+        bahagian: "A", no: 9, tajuk: "Soalan 9", max: 1,
+        soalan: "Rajah 2 menunjukkan kasut yang digunakan untuk menanam sayur.<br>Nyatakan jenis penjanaan idea reka bentuk itu.",
         svgVisual: `
           <div class="my-2 p-3 bg-slate-50 border rounded-xl flex items-center justify-center space-x-6">
             <svg width="80" height="70" viewBox="0 0 80 70">
               <path d="M25 10 L45 10 L45 40 L65 55 L20 55 Z" fill="#475569"/>
-              <text x="35" y="65" font-size="9" font-weight="bold">Kasut But</text>
+              <text x="35" y="66" font-size="9" font-weight="bold">Kasut But</text>
             </svg>
             <i class="fa-solid fa-arrow-right text-indigo-600 text-xl"></i>
             <svg width="80" height="70" viewBox="0 0 80 70">
@@ -441,21 +440,21 @@
           "A. Menukar saiz objek",
           "B. Menterbalikkan fungsi sesuatu alat",
           "C. Menterbalikkan kedudukan",
-          "D. Meniru apa sahaja yang terdapat di persekitaran"
+          "D. Meniru apa sahaja yang terdapat di persekitaran dan menukarkannya ke dalam bentuk produk"
         ],
         jawapanTepat: "B",
         skema: "B - Menterbalikkan fungsi sesuatu alat."
       },
       "a10": {
-        bahagian: "A", no: 10, tajuk: "Soalan 10 - Komponen Pengurusan Projek", max: 1,
+        bahagian: "A", no: 10, tajuk: "Soalan 10", max: 1,
         soalan: "Apakah komponen utama dalam pengurusan projek?<br>I. Kos projek<br>II. Skop kerja<br>III. Tempoh masa<br>IV. Pengurus projek",
         pilihan: ["A. I, II dan III", "B. I, II dan IV", "C. I, III dan IV", "D. II, III dan IV"],
         jawapanTepat: "A",
         skema: "A - I, II dan III (Kos projek, skop kerja, tempoh masa)."
       },
       "a11": {
-        bahagian: "A", no: 11, tajuk: "Soalan 11 - Penjanaan Idea Kerusi Gantung", max: 1,
-        soalan: "Rajah menunjukkan sarang burung dan kerusi buaian gantung.<br>Nyatakan konsep penjanaan idea yang diaplikasikan.",
+        bahagian: "A", no: 11, tajuk: "Soalan 11", max: 1,
+        soalan: "Rajah 3 menunjukkan sarang burung dan kerusi buaian gantung.<br>Nyatakan konsep penjanaan idea yang diaplikasikan.",
         svgVisual: `
           <div class="my-2 p-3 bg-slate-50 border rounded-xl flex items-center justify-center space-x-6">
             <svg width="70" height="70" viewBox="0 0 70 70">
@@ -472,29 +471,29 @@
           </div>
         `,
         pilihan: [
-          "A. Mengubah bahan terpakai menjadi produk baharu",
+          "A. Mengubah bahan terpakai menjadi produk baharu tanpa contoh alam semula jadi",
           "B. Meniru apa sahaja yang terdapat di persekitaran dan menukarkannya ke dalam bentuk produk",
           "C. Menghasilkan produk berdasarkan imaginasi tanpa rujukan",
-          "D. Menggunakan teknologi moden untuk mencipta produk"
+          "D. Menggunakan teknologi moden untuk mencipta produk inovatif"
         ],
         jawapanTepat: "B",
         skema: "B - Meniru apa sahaja yang terdapat di persekitaran dan menukarkannya ke dalam bentuk produk."
       },
       "a12": {
-        bahagian: "A", no: 12, tajuk: "Soalan 12 - Tugas Pengurus Projek", max: 1,
+        bahagian: "A", no: 12, tajuk: "Soalan 12", max: 1,
         soalan: "Apakah tugas utama pengurus projek (eksekutif)?",
         pilihan: [
-          "A. Menghasilkan produk tanpa perancangan",
+          "A. Menghasilkan produk tanpa perancangan dan kawalan",
           "B. Melakukan perancangan penentuan utama, subutama, pengelolaan aktiviti dan matriks organisasi",
-          "C. Mengurus kewangan sahaja",
+          "C. Mengurus kewangan sahaja tanpa melibatkan aktiviti lain",
           "D. Menjalankan tugas teknikal tanpa pengurusan pasukan"
         ],
         jawapanTepat: "B",
         skema: "B - Melakukan perancangan penentuan utama, subutama, pengelolaan aktiviti dan matriks organisasi."
       },
       "a13": {
-        bahagian: "A", no: 13, tajuk: "Soalan 13 - Tujuan Penjadualan", max: 1,
-        soalan: "Antara berikut, yang manakah merupakan tujuan penjadualan projek?",
+        bahagian: "A", no: 13, tajuk: "Soalan 13", max: 1,
+        soalan: "Antara berikut, yang manakah merupakan tujuan penjadualan?",
         pilihan: [
           "A. Meningkatkan kos projek dan pembaziran bahan",
           "B. Menggalakkan kerugian masa dan kos",
@@ -505,8 +504,8 @@
         skema: "C - Mengawal sumber tenaga pekerja dengan lebih sistematik."
       },
       "a14": {
-        bahagian: "A", no: 14, tajuk: "Soalan 14 - Carta Gantt Projek", max: 1,
-        soalan: "Carta Gantt menunjukkan aktiviti seperti: Melakar bentuk bakul, Memasang bakul, Kemasan/mengecat bakul.<br>Apakah nama projek yang ditunjukkan?",
+        bahagian: "A", no: 14, tajuk: "Soalan 14", max: 1,
+        soalan: "Rajah 4 menunjukkan Carta Gantt suatu projek (Aktiviti: Melakar bentuk bakul, Memasang bakul, Kemasan/mengecat).<br>Apakah nama projek yang ditunjukkan dalam carta Gantt tersebut?",
         pilihan: [
           "A. Projek mengecat bakul",
           "B. Projek pembinaan bakul",
@@ -517,13 +516,13 @@
         skema: "B - Projek pembinaan bakul."
       },
       "a15": {
-        bahagian: "A", no: 15, tajuk: "Soalan 15 - Peringkat Pengawalan", max: 1,
-        soalan: "Apakah tujuan peringkat pengawalan dalam pengurusan projek?",
+        bahagian: "A", no: 15, tajuk: "Soalan 15", max: 1,
+        soalan: "Apakah tujuan peringkat pengawalan?",
         pilihan: [
-          "A. Menentukan jumlah keuntungan projek",
+          "A. Menentukan jumlah keuntungan projek pada akhir pelaksanaan",
           "B. Memastikan semua aktiviti dapat disiapkan dalam masa yang telah ditetapkan",
-          "C. Melantik kontraktor baharu",
-          "D. Mereka bentuk logo projek untuk pemasaran"
+          "C. Melantik kontraktor baharu selepas projek siap",
+          "D. Mereka bentuk logo projek untuk tujuan pemasaran"
         ],
         jawapanTepat: "B",
         skema: "B - Memastikan semua aktiviti dapat disiapkan dalam masa yang telah ditetapkan."
@@ -531,175 +530,542 @@
 
       // ===== BAHAGIAN B (45 MARKAH) =====
       "b1": {
-        bahagian: "B", no: 1, tajuk: "Soalan 1 - Definisi Reka Bentuk & Teknologi", max: 3,
+        bahagian: "B", no: 1, tajuk: "Soalan 1", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">A, B dan C adalah maklumat mengenai reka bentuk dan teknologi:</p>
+          <div class="bg-slate-50 p-3 rounded-xl border text-xs space-y-1.5 my-2">
+            <div><strong>A :</strong> Pengaplikasian ilmu sains dan matematik dengan menggunakan bahan semula jadi untuk dijadikan alat, tenaga atau sistem</div>
+            <div><strong>B :</strong> Gabungan pengetahuan tentang penyusunan bahan secara terancang yang mengaplikasikan pengetahuan sains dan matematik</div>
+            <div><strong>C :</strong> Pengetahuan tentang penyusunan bahan secara terancang untuk menghasilkan sesuatu produk yang memberi impak kepada kehidupan</div>
+          </div>
+          <p class="text-xs text-slate-600 mb-2">Padankan maklumat yang betul dengan menulis <strong>A, B</strong> dan <strong>C</strong> pada petak yang disediakan:</p>
+        `,
+        inputs: [
+          { id: "b1_reka", label: "Reka bentuk:" },
+          { id: "b1_tekno", label: "Teknologi:" },
+          { id: "b1_rbt", label: "Reka bentuk & Teknologi:" }
+        ],
         kriteria: [
           { words: ["c"], point: 1, label: "Reka bentuk: C" },
           { words: ["a"], point: 1, label: "Teknologi: A" },
           { words: ["b"], point: 1, label: "Reka bentuk & Teknologi: B" }
         ],
-        skema: "Reka bentuk: C | Teknologi: A | Reka bentuk & Teknologi: B [3m]"
+        skema: "Reka bentuk: C [1m] | Teknologi: A [1m] | Reka bentuk & Teknologi: B [1m]"
       },
       "b2": {
-        bahagian: "B", no: 2, tajuk: "Soalan 2 - Teknik Pembinaan Objek", max: 3,
-        kriteria: [
-          { words: ["a"], point: 1, label: "i) Penyatuan: A" },
-          { words: ["c"], point: 1, label: "ii) Pembuangan: C" },
-          { words: ["b"], point: 1, label: "iii) Peleraian: B" }
+        bahagian: "B", no: 2, tajuk: "Soalan 2", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Lengkapkan tempat kosong dengan menulis <strong>A, B</strong> dan <strong>C</strong> pada petak yang disediakan:</p>
+          <div class="grid grid-cols-3 gap-2 bg-slate-50 p-2.5 rounded-xl border text-center text-xs font-bold my-2">
+            <div>A : Penyatuan</div>
+            <div>B : Peleraian</div>
+            <div>C : Pembuangan</div>
+          </div>
+          <div class="grid grid-cols-3 gap-3 my-3 text-center">
+            <div class="p-2 border rounded-xl bg-slate-50 flex flex-col items-center">
+              <svg width="60" height="40" viewBox="0 0 60 40"><polygon points="10,15 35,15 35,5 55,20 35,35 35,25 10,25" fill="#4338ca"/></svg>
+              <span class="text-[11px] font-bold mt-1">Rajah (i)</span>
+            </div>
+            <div class="p-2 border rounded-xl bg-slate-50 flex flex-col items-center">
+              <svg width="60" height="40" viewBox="0 0 60 40"><polygon points="15,5 30,5 45,20 45,35 35,35 35,25 25,25 25,15 15,15" fill="#ca8a04"/></svg>
+              <span class="text-[11px] font-bold mt-1">Rajah (ii)</span>
+            </div>
+            <div class="p-2 border rounded-xl bg-slate-50 flex flex-col items-center">
+              <svg width="60" height="40" viewBox="0 0 60 40"><rect x="10" y="5" width="40" height="12" fill="#0284c7"/><rect x="10" y="23" width="40" height="12" fill="#0284c7"/></svg>
+              <span class="text-[11px] font-bold mt-1">Rajah (iii)</span>
+            </div>
+          </div>
+        `,
+        inputs: [
+          { id: "b2_i", label: "i." },
+          { id: "b2_ii", label: "ii." },
+          { id: "b2_iii", label: "iii." }
         ],
-        skema: "i: A (Penyatuan) | ii: C (Pembuangan) | iii: B (Peleraian) [3m]"
+        kriteria: [
+          { words: ["a"], point: 1, label: "i: A (Penyatuan)" },
+          { words: ["c"], point: 1, label: "ii: C (Pembuangan)" },
+          { words: ["b"], point: 1, label: "iii: B (Peleraian)" }
+        ],
+        skema: "i: A [1m] | ii: C [1m] | iii: B [1m]"
       },
       "b3": {
-        bahagian: "B", no: 3, tajuk: "Soalan 3 - Tiga Prinsip Reka Bentuk", max: 3,
+        bahagian: "B", no: 3, tajuk: "Soalan 3", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Maklumat berikut menunjukkan prinsip reka bentuk. Berdasarkan pernyataan, pilih tiga prinsip reka bentuk yang betul dengan menulis jawapan pada ruang yang disediakan:</p>
+          <div class="p-2.5 bg-slate-50 rounded-xl border text-xs font-bold text-center my-2 text-indigo-900">
+            Pengulangan &nbsp;|&nbsp; Tekstur &nbsp;|&nbsp; Harmoni &nbsp;|&nbsp; Keseimbangan &nbsp;|&nbsp; Keringkasan &nbsp;|&nbsp; Kontras
+          </div>
+        `,
+        inputs: [
+          { id: "b3_1", label: "1." },
+          { id: "b3_2", label: "2." },
+          { id: "b3_3", label: "3." }
+        ],
         kriteria: [
           { words: ["pengulangan"], point: 1, label: "Pengulangan" },
           { words: ["keseimbangan"], point: 1, label: "Keseimbangan" },
           { words: ["keringkasan", "harmoni", "kontras"], point: 1, label: "Keringkasan / Harmoni / Kontras" }
         ],
-        skema: "Mana-mana tiga: Pengulangan, Keseimbangan, Keringkasan, Harmoni, Kontras (Tekstur adalah elemen). [3m]"
+        skema: "Mana-mana tiga: Pengulangan, Keseimbangan, Keringkasan, Harmoni, Kontras (Tekstur adalah elemen, bukan prinsip) [3m]."
       },
       "b4": {
-        bahagian: "B", no: 4, tajuk: "Soalan 4 - Kepentingan RBT", max: 3,
+        bahagian: "B", no: 4, tajuk: "Soalan 4", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Maklumat berikut adalah kepentingan reka bentuk dan teknologi:</p>
+          <ul class="list-disc list-inside text-xs bg-slate-50 p-3 rounded-xl border space-y-1 my-2">
+            <li>Menyumbang kepada perkembangan teknologi moden</li>
+            <li>Memenuhi keperluan individu dan masyarakat</li>
+            <li>Memudahkan kerja melalui pengubahsuaian</li>
+            <li>Membuka laluan kerjaya dan pekerjaan</li>
+          </ul>
+          <p class="text-xs text-slate-600 mb-2">Pilih dan tuliskan tiga kepentingan reka bentuk dan teknologi:</p>
+        `,
+        inputs: [
+          { id: "b4_1", label: "(i)" },
+          { id: "b4_2", label: "(ii)" },
+          { id: "b4_3", label: "(iii)" }
+        ],
         kriteria: [
           { words: ["teknologi moden", "perkembangan"], point: 1, label: "Perkembangan teknologi moden" },
           { words: ["keperluan", "kehendak", "memudahkan kerja"], point: 1, label: "Memenuhi keperluan / Memudahkan kerja" },
           { words: ["kerjaya", "pekerjaan"], point: 1, label: "Membuka laluan kerjaya" }
         ],
-        skema: "1. Menyumbang kepada perkembangan teknologi moden\n2. Memenuhi keperluan individu/memudahkan kerja\n3. Membuka laluan kerjaya dan pekerjaan [3m]"
+        skema: "Mana-mana 3 kepentingan yang disenaraikan [3m]."
       },
       "b5": {
-        bahagian: "B", no: 5, tajuk: "Soalan 5 - Etika Reka Bentuk", max: 3,
-        kriteria: [
-          { words: ["✓", "/", "betul", "benar"], point: 1, label: "Keaslian [✓]" },
-          { words: ["✓", "/", "betul", "benar"], point: 1, label: "Jujur [✓]" },
-          { words: ["✗", "x", "salah", "palsu"], point: 1, label: "Berani [✗]" }
+        bahagian: "B", no: 5, tajuk: "Soalan 5", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Tandakan (✓) bagi etika dalam reka bentuk yang betul dan (✗) bagi yang salah pada petak yang disediakan:</p>
+        `,
+        inputs: [
+          { id: "b5_1", label: "Keaslian:" },
+          { id: "b5_2", label: "Jujur:" },
+          { id: "b5_3", label: "Berani:" }
         ],
-        skema: "Keaslian: (✓) | Jujur: (✓) | Berani: (✗) [3m]"
+        kriteria: [
+          { words: ["✓", "/", "betul"], point: 1, label: "Keaslian [✓]" },
+          { words: ["✓", "/", "betul"], point: 1, label: "Jujur [✓]" },
+          { words: ["✗", "x", "salah"], point: 1, label: "Berani [✗]" }
+        ],
+        skema: "Keaslian: (✓) [1m] | Jujur: (✓) [1m] | Berani: (✗) [1m]"
       },
       "b6": {
-        bahagian: "B", no: 6, tajuk: "Soalan 6 - Fungsi Jenis Garisan", max: 3,
-        kriteria: [
-          { words: ["b"], point: 1, label: "Menunjukkan pergerakan: B (Gear)" },
-          { words: ["a"], point: 1, label: "Menunjukkan keseimbangan: A (Anak panah)" },
-          { words: ["c"], point: 1, label: "Menunjukkan perhubungan: C (Tali jam)" }
+        bahagian: "B", no: 6, tajuk: "Soalan 6", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Rajah berikut menunjukkan jenis garisan yang terdapat dalam elemen reka bentuk:</p>
+          <div class="grid grid-cols-3 gap-2 my-2 text-center text-xs">
+            <div class="p-2 border rounded-xl bg-slate-50 flex flex-col items-center">
+              <svg width="60" height="60" viewBox="0 0 60 60"><polygon points="30,5 45,20 35,20 35,45 25,45 25,20 15,20" fill="#0f172a"/><polygon points="55,30 40,45 40,35 15,35 15,25 40,25 40,15" fill="#0f172a"/><polygon points="5,30 20,15 20,25 45,25 45,35 20,35 20,45" fill="#0f172a"/></svg>
+              <strong class="mt-1">A</strong>
+            </div>
+            <div class="p-2 border rounded-xl bg-slate-50 flex flex-col items-center">
+              <svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="22" fill="none" stroke="#475569" stroke-width="4" stroke-dasharray="6,4"/><circle cx="30" cy="30" r="10" fill="#94a3b8"/></svg>
+              <strong class="mt-1">B</strong>
+            </div>
+            <div class="p-2 border rounded-xl bg-slate-50 flex flex-col items-center">
+              <svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="18" fill="none" stroke="#0f172a" stroke-width="2"/><line x1="30" y1="5" x2="30" y2="55" stroke="#0f172a" stroke-width="4"/></svg>
+              <strong class="mt-1">C</strong>
+            </div>
+          </div>
+          <p class="text-xs text-slate-600 mb-2">Padankan jenis garisan itu dengan menulis <strong>A, B</strong> dan <strong>C</strong> pada ruang yang disediakan:</p>
+        `,
+        inputs: [
+          { id: "b6_1", label: "Menunjukkan pergerakan:" },
+          { id: "b6_2", label: "Menunjukkan keseimbangan:" },
+          { id: "b6_3", label: "Menunjukkan perhubungan:" }
         ],
-        skema: "Menunjukkan pergerakan: B | Menunjukkan keseimbangan: A | Menunjukkan perhubungan: C [3m]"
+        kriteria: [
+          { words: ["b"], point: 1, label: "Pergerakan: B" },
+          { words: ["a"], point: 1, label: "Keseimbangan: A" },
+          { words: ["c"], point: 1, label: "Perhubungan: C" }
+        ],
+        skema: "Menunjukkan pergerakan: B [1m] | Menunjukkan keseimbangan: A [1m] | Menunjukkan perhubungan: C [1m]"
       },
       "b7": {
-        bahagian: "B", no: 7, tajuk: "Soalan 7 - Bidang Aplikasi Invensi & Inovasi", max: 3,
-        kriteria: [
-          { words: ["pertahanan"], point: 1, label: "Robot periuk api: Pertahanan" },
-          { words: ["pendidikan"], point: 1, label: "Komputer mini: Pendidikan" },
-          { words: ["kesihatan"], point: 1, label: "Jam pemantau nadi: Kesihatan" }
+        bahagian: "B", no: 7, tajuk: "Soalan 7", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Rajah berikut menunjukkan produk yang mengaplikasi prinsip invensi dan inovasi reka bentuk. Pilih nama kerjaya reka bentuk berdasarkan pilihan jawapan yang diberikan pada petak kosong yang disediakan:</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 bg-slate-50 p-2.5 rounded-xl border text-center text-xs font-bold my-2">
+            <div>Pertahanan</div>
+            <div>Pendidikan</div>
+            <div>Kesihatan</div>
+            <div>Pembuatan</div>
+          </div>
+        `,
+        inputs: [
+          { id: "b7_1", label: "Robot ketenteraan / penjinak bom:" },
+          { id: "b7_2", label: "Komputer tablet / e-kamus:" },
+          { id: "b7_3", label: "Jam tangan pengesan nadi:" }
         ],
-        skema: "1. Robot ketenteraan: Pertahanan\n2. Komputer tablet/PDA: Pendidikan\n3. Jam pengesan nadi: Kesihatan [3m]"
+        kriteria: [
+          { words: ["pertahanan"], point: 1, label: "Pertahanan" },
+          { words: ["pendidikan"], point: 1, label: "Pendidikan" },
+          { words: ["kesihatan"], point: 1, label: "Kesihatan" }
+        ],
+        skema: "1. Pertahanan [1m] | 2. Pendidikan [1m] | 3. Kesihatan [1m]"
       },
       "b8": {
-        bahagian: "B", no: 8, tajuk: "Soalan 8 - Elemen Reka Bentuk", max: 3,
+        bahagian: "B", no: 8, tajuk: "Soalan 8", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Tandakan (✓) bagi elemen reka bentuk berdasarkan produk yang betul dan (✗) bagi yang salah pada petak yang disediakan:</p>
+        `,
+        inputs: [
+          { id: "b8_1", label: "Rupa:" },
+          { id: "b8_2", label: "Keringkasan:" },
+          { id: "b8_3", label: "Warna:" }
+        ],
         kriteria: [
           { words: ["✓", "/", "betul"], point: 1, label: "Rupa [✓]" },
           { words: ["✗", "x", "salah"], point: 1, label: "Keringkasan [✗]" },
           { words: ["✓", "/", "betul"], point: 1, label: "Warna [✓]" }
         ],
-        skema: "Rupa: (✓) | Keringkasan: (✗) | Warna: (✓) [3m]"
+        skema: "Rupa: (✓) [1m] | Keringkasan: (✗) [1m] | Warna: (✓) [1m]"
       },
       "b9": {
-        bahagian: "B", no: 9, tajuk: "Soalan 9 - Rupa Geometri atau Rupa Organik", max: 3,
-        kriteria: [
-          { words: ["geometri"], point: 1, label: "Rupa 1: Geometri" },
-          { words: ["geometri"], point: 1, label: "Rupa 2: Geometri" },
-          { words: ["organik"], point: 1, label: "Rupa 3: Organik" }
+        bahagian: "B", no: 9, tajuk: "Soalan 9", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Rupa ialah hasil pertemuan antara hujung garisan dengan permulaannya. Nyatakan sama ada rupa di bawah <strong>RUPA GEOMETRI</strong> atau <strong>RUPA ORGANIK</strong>:</p>
+        `,
+        inputs: [
+          { id: "b9_1", label: "Rajah 1 (Bentuk Geometri Bintang/Poligon):" },
+          { id: "b9_2", label: "Rajah 2 (Bentuk Geometri Teratur):" },
+          { id: "b9_3", label: "Rajah 3 (Bentuk Daun / Bebas):" }
         ],
-        skema: "Rajah 1: RUPA GEOMETRI | Rajah 2: RUPA GEOMETRI | Rajah 3: RUPA ORGANIK [3m]"
+        kriteria: [
+          { words: ["geometri"], point: 1, label: "Rupa 1: RUPA GEOMETRI" },
+          { words: ["geometri"], point: 1, label: "Rupa 2: RUPA GEOMETRI" },
+          { words: ["organik"], point: 1, label: "Rupa 3: RUPA ORGANIK" }
+        ],
+        skema: "Rajah 1: RUPA GEOMETRI [1m] | Rajah 2: RUPA GEOMETRI [1m] | Rajah 3: RUPA ORGANIK [1m]"
       },
       "b10": {
-        bahagian: "B", no: 10, tajuk: "Soalan 10 - Kumpulan Warna Sekunder", max: 3,
-        kriteria: [
-          { words: ["✗", "x", "salah"], point: 1, label: "Merah: (✗)" },
-          { words: ["✗", "x", "salah"], point: 1, label: "Kuning: (✗)" },
-          { words: ["✓", "/", "betul"], point: 1, label: "Hijau: (✓)" }
+        bahagian: "B", no: 10, tajuk: "Soalan 10", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Tandakan (✓) bagi warna sekunder yang betul dan (✗) bagi yang salah pada petak yang disediakan:</p>
+        `,
+        inputs: [
+          { id: "b10_1", label: "Merah:" },
+          { id: "b10_2", label: "Kuning:" },
+          { id: "b10_3", label: "Hijau:" }
         ],
-        skema: "Merah: (✗ - Asas) | Kuning: (✗ - Asas) | Hijau: (✓ - Sekunder) [3m]"
+        kriteria: [
+          { words: ["✗", "x", "salah"], point: 1, label: "Merah [✗]" },
+          { words: ["✗", "x", "salah"], point: 1, label: "Kuning [✗]" },
+          { words: ["✓", "/", "betul"], point: 1, label: "Hijau [✓]" }
+        ],
+        skema: "Merah: (✗) [1m] | Kuning: (✗) [1m] | Hijau: (✓) [1m]"
       },
       "b11": {
-        bahagian: "B", no: 11, tajuk: "Soalan 11 - Teknik Pembinaan Lampu Meja", max: 3,
+        bahagian: "B", no: 11, tajuk: "Soalan 11", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Rajah 5 di bawah menunjukkan sebuah Lampu Meja. Tandakan (✓) pada teknik pembinaan reka bentuk yang betul dan (✗) bagi yang salah pada ruang jawapan reka bentuk produk tersebut:</p>
+          <div class="my-2 p-3 bg-slate-50 border rounded-xl flex flex-col items-center">
+            <svg width="120" height="150" viewBox="0 0 120 150">
+              <polygon points="20,10 100,10 90,45 30,45" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+              <rect x="56" y="45" width="8" height="12" fill="#d97706"/>
+              <path d="M60 57 Q85 85 80 125 L40 125 Q35 85 60 57 Z" fill="#334155"/>
+              <ellipse cx="60" cy="95" rx="15" ry="20" fill="#f8fafc"/>
+              <rect x="30" y="125" width="60" height="8" fill="#1e293b"/>
+            </svg>
+            <span class="text-xs font-bold text-slate-500 mt-1">Rajah 5: Lampu Meja</span>
+          </div>
+        `,
+        inputs: [
+          { id: "b11_1", label: "Pembuangan:" },
+          { id: "b11_2", label: "Penyatuan:" },
+          { id: "b11_3", label: "Peleraian:" }
+        ],
         kriteria: [
           { words: ["✓", "/", "betul"], point: 1, label: "Pembuangan [✓]" },
           { words: ["✓", "/", "betul"], point: 1, label: "Penyatuan [✓]" },
           { words: ["✗", "x", "salah"], point: 1, label: "Peleraian [✗]" }
         ],
-        skema: "Pembuangan: (✓) | Penyatuan: (✓) | Peleraian: (✗) [3m]"
+        skema: "Pembuangan: (✓) [1m] | Penyatuan: (✓) [1m] | Peleraian: (✗) [1m]"
       },
       "b12": {
-        bahagian: "B", no: 12, tajuk: "Soalan 12 - Bentuk Geometri Asas & Teknik", max: 3,
-        kriteria: [
-          { words: ["kuboid"], point: 1, label: "Bongkah 1: Kuboid" },
-          { words: ["silinder"], point: 1, label: "Bongkah 2: Silinder" },
-          { words: ["penyatuan"], point: 1, label: "Teknik: Penyatuan" }
+        bahagian: "B", no: 12, tajuk: "Soalan 12", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Rajah 6 berikut menunjukkan objek asas yang dibina menggunakan bentuk geometri asas:</p>
+          <div class="my-2 p-3 bg-slate-50 border rounded-xl flex flex-col items-center">
+            <svg width="220" height="90" viewBox="0 0 220 90">
+              <g stroke="#0f172a" stroke-width="1.5" fill="none">
+                <rect x="15" y="40" width="35" height="18"/><polygon points="15,40 25,30 60,30 50,40"/><line x1="60" y1="30" x2="60" y2="48"/><line x1="50" y1="40" x2="60" y2="48"/><line x1="50" y1="58" x2="60" y2="48"/>
+                <rect x="40" y="30" width="35" height="18"/><polygon points="40,30 50,20 85,20 75,30"/><line x1="85" y1="20" x2="85" y2="38"/><line x1="75" y1="30" x2="85" y2="38"/><line x1="75" y1="48" x2="85" y2="38"/>
+                <ellipse cx="150" cy="55" rx="50" ry="18"/>
+                <line x1="100" y1="55" x2="100" y2="65"/><line x1="200" y1="55" x2="200" y2="65"/><path d="M 100 65 Q 150 83 200 65"/>
+              </g>
+            </svg>
+            <span class="text-xs font-bold text-slate-500 mt-1">Rajah 6</span>
+          </div>
+        `,
+        inputs: [
+          { id: "b12_a1", label: "(a) i. Bentuk bongkah 1:" },
+          { id: "b12_a2", label: "(a) ii. Bentuk bongkah 2:" },
+          { id: "b12_b", label: "(b) Satu teknik pembinaan objek yang digunakan:" }
         ],
-        skema: "(a) i. Kuboid [1m], ii. Silinder [1m]\n(b) Teknik pembinaan: Penyatuan [1m]"
+        kriteria: [
+          { words: ["kuboid"], point: 1, label: "Kuboid" },
+          { words: ["silinder"], point: 1, label: "Silinder" },
+          { words: ["penyatuan"], point: 1, label: "Penyatuan" }
+        ],
+        skema: "(a) i. Kuboid [1m], ii. Silinder [1m]\n(b) Penyatuan [1m]"
       },
       "b13": {
-        bahagian: "B", no: 13, tajuk: "Soalan 13 - Bidang Pengguna RBT", max: 3,
-        kriteria: [
-          { words: ["peralatan di rumah", "rumah"], point: 1, label: "Kediaman -> Peralatan di rumah" },
-          { words: ["taman permainan", "rekreasi"], point: 1, label: "Olahraga -> Taman Permainan" },
-          { words: ["perlindungan kebakaran", "kebakaran"], point: 1, label: "Keselamatan -> Perlindungan kebakaran" }
+        bahagian: "B", no: 13, tajuk: "Soalan 13", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Padankan kepentingan reka bentuk dan teknologi mengikut bidang pengguna dan sektor yang betul (Pilihan: <em>Taman Permainan</em> / <em>Perlindungan kebakaran</em> / <em>Peralatan di rumah</em>):</p>
+        `,
+        inputs: [
+          { id: "b13_1", label: "Kediaman:" },
+          { id: "b13_2", label: "Olahraga dan rekreasi:" },
+          { id: "b13_3", label: "Kesihatan dan Keselamatan:" }
         ],
-        skema: "Kediaman: Peralatan di rumah | Olahraga: Taman Permainan | Keselamatan: Perlindungan kebakaran [3m]"
+        kriteria: [
+          { words: ["peralatan di rumah", "rumah"], point: 1, label: "Peralatan di rumah" },
+          { words: ["taman permainan", "rekreasi"], point: 1, label: "Taman Permainan" },
+          { words: ["perlindungan kebakaran", "kebakaran"], point: 1, label: "Perlindungan kebakaran" }
+        ],
+        skema: "Kediaman: Peralatan di rumah [1m] | Olahraga: Taman Permainan [1m] | Keselamatan: Perlindungan kebakaran [1m]"
       },
       "b14": {
-        bahagian: "B", no: 14, tajuk: "Soalan 14 - Padanan Kerjaya RBT", max: 3,
-        kriteria: [
-          { words: ["b"], point: 1, label: "Logo Jubli Perak: B (Grafik)" },
-          { words: ["a"], point: 1, label: "Rumah Banglo: A (Arkitek)" },
-          { words: ["c"], point: 1, label: "Sofa: C (Hiasan Dalaman)" }
+        bahagian: "B", no: 14, tajuk: "Soalan 14", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Maklumat di bawah menunjukkan tiga kerjaya dalam bidang reka bentuk dan teknologi:</p>
+          <div class="grid grid-cols-3 gap-2 bg-slate-50 p-2.5 rounded-xl border text-center text-xs font-bold my-2">
+            <div>A : Arkitek</div>
+            <div>B : Pereka bentuk grafik</div>
+            <div>C : Pereka bentuk hiasan dalaman</div>
+          </div>
+          <p class="text-xs text-slate-600 mb-2">Padankan reka bentuk berikut dengan menulis <strong>A, B</strong> atau <strong>C</strong> di ruang jawapan yang disediakan:</p>
+        `,
+        inputs: [
+          { id: "b14_1", label: "Logo Sambutan Jubli Perak SMK KPPI:" },
+          { id: "b14_2", label: "Lakaran Rumah Banglo Dua Tingkat:" },
+          { id: "b14_3", label: "Sofa Ruang Tamu:" }
         ],
-        skema: "Logo: B (Grafik) | Rumah: A (Arkitek) | Sofa: C (Hiasan Dalaman) [3m]"
+        kriteria: [
+          { words: ["b"], point: 1, label: "Logo: B" },
+          { words: ["a"], point: 1, label: "Rumah: A" },
+          { words: ["c"], point: 1, label: "Sofa: C" }
+        ],
+        skema: "Logo: B (Pereka grafik) [1m] | Rumah: A (Arkitek) [1m] | Sofa: C (Hiasan dalaman) [1m]"
       },
       "b15": {
-        bahagian: "B", no: 15, tajuk: "Soalan 15 - Padanan Etika Reka Bentuk", max: 3,
-        kriteria: [
-          { words: ["keaslian"], point: 1, label: "Bukan menciplak: Keaslian" },
-          { words: ["bermanfaat"], point: 1, label: "Memberi faedah: Bermanfaat" },
-          { words: ["mesra alam", "alam sekitar"], point: 1, label: "Mesra alam sekitar" }
+        bahagian: "B", no: 15, tajuk: "Soalan 15", max: 3,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">Padankan keterangan yang berikut dengan etika reka bentuk yang betul:</p>
+          <div class="p-2.5 bg-slate-50 rounded-xl border text-xs font-bold text-center text-indigo-900 my-2">
+            Selamat digunakan &nbsp;|&nbsp; Keaslian &nbsp;|&nbsp; Mesra alam sekitar &nbsp;|&nbsp; Bermanfaat
+          </div>
+        `,
+        inputs: [
+          { id: "b15_1", label: "Mereka produk dengan usaha sendiri bukan memplagiat atau meniru hasil kerja orang lain:" },
+          { id: "b15_2", label: "Produk yang memberi manfaat kepada pengguna:" },
+          { id: "b15_3", label: "Menggunakan sumber semula jadi tanpa menjejaskan alam sekitar:" },
+          { id: "b15_4", label: "Menghasilkan produk yang selamat diguna dan tidak memberi kesan sampingan kepada pengguna:" }
         ],
-        skema: "1. Keaslian | 2. Bermanfaat | 3. Mesra alam sekitar | 4. Selamat digunakan [3m]"
+        kriteria: [
+          { words: ["keaslian"], point: 1, label: "Keaslian" },
+          { words: ["bermanfaat"], point: 1, label: "Bermanfaat" },
+          { words: ["mesra alam"], point: 1, label: "Mesra alam sekitar" }
+        ],
+        skema: "1. Keaslian [1m] | 2. Bermanfaat [1m] | 3. Mesra alam sekitar [1m] | 4. Selamat digunakan [1m]"
       },
 
       // ===== BAHAGIAN C (40 MARKAH) =====
       "c1": {
-        bahagian: "C", no: 1, tajuk: "Soalan 1 - Rupa Geometri & Pembentukan Objek", max: 10,
+        bahagian: "C", no: 1, tajuk: "Soalan 1", max: 10,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">1. Berikut adalah beberapa rupa asas reka bentuk geometri (Rajah 7):</p>
+          <div class="my-3 p-3 bg-slate-50 border rounded-xl flex justify-center items-center gap-6">
+            <svg width="60" height="60" viewBox="0 0 60 60"><polygon points="30,8 8,52 52,52" fill="#16a34a"/></svg>
+            <svg width="60" height="60" viewBox="0 0 60 60"><circle cx="30" cy="30" r="22" fill="#2563eb"/></svg>
+            <svg width="60" height="60" viewBox="0 0 60 60"><rect x="10" y="10" width="40" height="40" fill="#dc2626"/></svg>
+            <svg width="60" height="60" viewBox="0 0 60 60"><rect x="5" y="15" width="50" height="30" fill="#d97706"/></svg>
+          </div>
+          <span class="block text-center text-xs font-bold text-slate-500 mb-2">Rajah 7</span>
+          <p class="text-xs text-slate-700 font-bold mb-1">Berdasarkan Rajah 7 itu:</p>
+          <p class="text-xs text-slate-600 mb-2">(a) Nyatakan tiga rupa geometri [3 Markah]:</p>
+        `,
+        inputs: [
+          { id: "c1_a1", label: "(i)" },
+          { id: "c1_a2", label: "(ii)" },
+          { id: "c1_a3", label: "(iii)" }
+        ],
+        extraTextarea: {
+          id: "c1_b",
+          label: "(b) Gabungkan beberapa rupa geometri itu hingga membentuk satu rupa objek yang baharu. Terangkan dan huraikan lakaran objek baharu tersebut serta senaraikan rupa geometri yang digabungkan [7 Markah]:",
+          rows: 4
+        },
         kriteria: [
           { words: ["segitiga", "segi tiga", "bulat", "bulatan", "segi empat"], point: 3, label: "3 Rupa Geometri (3m)" },
-          { words: ["gabung", "objek", "lakaran", "bentuk", "kreatif"], point: 7, label: "Lakaran gabungan objek baharu (7m)" }
+          { words: ["gabung", "objek", "lakaran", "bentuk", "kreatif"], point: 7, label: "Lakaran / Huraian gabungan objek baharu (7m)" }
         ],
-        skema: "(a) Mana-mana 3: Segi tiga, bulatan, segi empat tepat, segi empat sama [3m]\n(b) Gabungan rupa menghasilkan objek baharu yang bermakna [Maks 7m]"
+        skema: "(a) Mana-mana 3: Bulatan, Segi empat tepat, Segi empat sama, Segi tiga [3m]\n(b) Gabungan rupa menghasilkan objek baharu yang bermakna [Maks 7m]"
       },
       "c2": {
-        bahagian: "C", no: 2, tajuk: "Soalan 2 - Penambahbaikan Lakaran Pasu Bunga", max: 10,
+        bahagian: "C", no: 2, tajuk: "Soalan 2", max: 10,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">2. (a) Anda dikehendaki menambah baik lakaran pasu bunga pada Rajah 8 di bawah sehingga menjadi sebuah lakaran pasu bunga yang baharu [6 Markah]:</p>
+          <div class="my-3 p-3 bg-slate-50 border rounded-xl flex flex-col items-center">
+            <svg width="100" height="150" viewBox="0 0 100 150">
+              <ellipse cx="50" cy="15" rx="25" ry="8" fill="none" stroke="#0f172a" stroke-width="2"/>
+              <path d="M 25 15 Q 40 45 20 85 Q 15 125 35 140 L 65 140 Q 85 125 80 85 Q 60 45 75 15" fill="none" stroke="#0f172a" stroke-width="2"/>
+              <ellipse cx="50" cy="140" rx="15" ry="4" fill="none" stroke="#0f172a" stroke-width="2"/>
+            </svg>
+            <span class="text-xs font-bold text-slate-500 mt-1">Rajah 8: Lakaran Pasu Bunga Asas</span>
+          </div>
+          <div class="bg-amber-50 p-2.5 rounded-xl border border-amber-200 text-[11px] text-amber-900 mb-3">
+            <strong>Rubrik Pemarkahan:</strong> Kreatif menambah baik pasu bunga (2M), Sekurang-kurangnya 2 elemen RBT (2M), Sekurang-kurangnya 2 prinsip RBT (2M).
+          </div>
+        `,
+        extraTextarea: {
+          id: "c2_a",
+          label: "Huraikan penambahbaikan kreatif yang anda lakukan pada pasu bunga ini (perincian lakaran):",
+          rows: 3
+        },
+        inputs: [
+          { id: "c2_elemen1", label: "(b) Elemen 1 & Justifikasi:" },
+          { id: "c2_elemen2", label: "(b) Elemen 2 & Justifikasi:" },
+          { id: "c2_prinsip1", label: "(b) Prinsip 1 & Justifikasi:" },
+          { id: "c2_prinsip2", label: "(b) Prinsip 2 & Justifikasi:" }
+        ],
         kriteria: [
-          { words: ["garisan", "corak", "tekstur", "warna", "rupa", "inovasi"], point: 6, label: "Lakaran pasu ditambah baik (6m)" },
+          { words: ["garisan", "corak", "tekstur", "warna", "rupa", "inovasi"], point: 6, label: "Penambahbaikan pasu (6m)" },
           { words: ["elemen", "prinsip", "justifikasi"], point: 4, label: "2 Elemen & 2 Prinsip beserta justifikasi (4m)" }
         ],
-        skema: "(a) Lakaran pasu ditambah baik secara kreatif (2 elemen + 2 prinsip) [6m]\n(b) 2 elemen dan 2 prinsip beserta justifikasi yang tepat [4m]"
+        skema: "(a) Lakaran pasu ditambah baik secara kreatif (2 elemen + 2 prinsip) [6m]\n(b) 2 Elemen dan 2 Prinsip beserta justifikasi [4m]"
       },
       "c3": {
-        bahagian: "C", no: 3, tajuk: "Soalan 3 - Roda Warna", max: 10,
-        kriteria: [
-          { words: ["merah", "biru", "kuning"], point: 3, label: "3 Warna Asas (3m)" },
-          { words: ["hijau", "ungu", "jingga"], point: 3, label: "3 Warna Sekunder (3m)" },
-          { words: ["asas", "sekunder", "tertir", "kedudukan"], point: 4, label: "Kedudukan / Pewarnaan Roda Warna (4m)" }
+        bahagian: "C", no: 3, tajuk: "Soalan 3", max: 10,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800">3. Warna merupakan salah satu daripada Elemen Reka Bentuk. Rajah 9 di bawah menjelaskan tiga kumpulan warna melalui Rajah Roda Warna:</p>
+          <div class="my-3 p-3 bg-slate-50 border rounded-xl flex flex-col items-center">
+            <svg width="150" height="150" viewBox="0 0 150 150">
+              <circle cx="75" cy="75" r="65" fill="#f8fafc" stroke="#334155" stroke-width="2"/>
+              <path d="M75 10 L75 140 M10 75 L140 75 M29 29 L121 121 M29 121 L121 29" stroke="#64748b" stroke-width="1.5"/>
+              <circle cx="75" cy="75" r="25" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+              <text x="75" y="78" font-size="8" font-weight="black" text-anchor="middle" fill="#0f172a">RODA WARNA</text>
+            </svg>
+            <span class="text-xs font-bold text-slate-500 mt-1">Rajah 9: Roda Warna</span>
+          </div>
+        `,
+        inputs: [
+          { id: "c3_a1", label: "(a) i. Warna Asas 1:" },
+          { id: "c3_a2", label: "(a) ii. Warna Asas 2:" },
+          { id: "c3_a3", label: "(a) iii. Warna Asas 3:" },
+          { id: "c3_b1", label: "(b) i. Warna Sekunder 1:" },
+          { id: "c3_b2", label: "(b) ii. Warna Sekunder 2:" },
+          { id: "c3_b3", label: "(b) iii. Warna Sekunder 3:" }
         ],
-        skema: "(a) Warna Asas: Merah, Biru, Kuning [3m]\n(b) Warna Sekunder: Hijau, Ungu, Jingga [3m]\n(c) Kedudukan warna pada roda warna ditandakan dengan betul [4m]"
+        extraTextarea: {
+          id: "c3_c",
+          label: "(c) Pada Rajah 9, nyatakan / terangkan susunan dan bahagian kedudukan warna asas dan warna sekunder pada tempatnya [4 Markah]:",
+          rows: 3
+        },
+        kriteria: [
+          { words: ["merah", "biru", "kuning"], point: 3, label: "Warna Asas (3m)" },
+          { words: ["hijau", "ungu", "jingga"], point: 3, label: "Warna Sekunder (3m)" },
+          { words: ["asas", "sekunder", "tertir", "kedudukan"], point: 4, label: "Pewarnaan / Kedudukan roda warna (4m)" }
+        ],
+        skema: "(a) Warna Asas: Merah, Biru, Kuning [3m]\n(b) Warna Sekunder: Hijau, Ungu, Jingga [3m]\n(c) Kedudukan warna asas dan sekunder tepat pada roda warna [4m]"
       },
       "c4": {
-        bahagian: "C", no: 4, tajuk: "Soalan 4 - Analisis Reka Bentuk Bakul Sampah", max: 10,
-        kriteria: [
-          { words: ["segi empat", "silinder", "lubang", "tekstur", "bentuk"], point: 4, label: "Perbandingan 2 Elemen Produk A & B (4m)" },
-          { words: ["simetri", "keseimbangan", "keringkasan"], point: 4, label: "Perbandingan 2 Prinsip Produk A & B (4m)" },
-          { words: ["sampah", "pakaian", "kotor", "tempat simpan"], point: 2, label: "Dua fungsi produk (2m)" }
+        bahagian: "C", no: 4, tajuk: "Soalan 4", max: 10,
+        soalanPenuh: `
+          <p class="text-xs font-semibold text-slate-800 leading-relaxed">
+            4. Analisis Kajian Reka Bentuk Produk Dan Pasaran amat penting bagi menentukan tahap potensi produk yang dihasilkan dapat menarik minat pelanggan serta dapat bersaing di pasaran.
+          </p>
+          <p class="text-xs text-slate-600 mt-1">
+            Rajah 10 di bawah menunjukkan Kajian Reka Bentuk Produk Bakul Sampah di pasaran:
+          </p>
+
+          <!-- RAJAH 10: BAKUL A & BAKUL B -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3 text-center">
+            <div class="p-3 bg-slate-50 border rounded-2xl flex flex-col items-center">
+              <span class="text-xs font-bold text-slate-700 mb-2">PRODUK A</span>
+              <svg width="140" height="140" viewBox="0 0 140 140">
+                <polygon points="20,25 120,25 105,120 35,120" fill="#1e293b" opacity="0.1" stroke="#0f172a" stroke-width="2"/>
+                <g stroke="#0f172a" stroke-width="0.8" opacity="0.6">
+                  <line x1="30" y1="25" x2="42" y2="120"/><line x1="50" y1="25" x2="56" y2="120"/><line x1="70" y1="25" x2="70" y2="120"/><line x1="90" y1="25" x2="84" y2="120"/><line x1="110" y1="25" x2="98" y2="120"/>
+                  <line x1="22" y1="45" x2="118" y2="45"/><line x1="26" y1="65" x2="114" y2="65"/><line x1="30" y1="85" x2="110" y2="85"/><line x1="33" y1="105" x2="107" y2="105"/>
+                </g>
+                <rect x="18" y="22" width="104" height="6" rx="2" fill="#0f172a"/>
+                <polygon points="35,120 105,120 100,126 40,126" fill="#0f172a"/>
+              </svg>
+              <span class="text-[11px] text-slate-500 font-semibold mt-1">Bakul Jaring Logam / Dawai Segi Empat</span>
+            </div>
+
+            <div class="p-3 bg-slate-50 border rounded-2xl flex flex-col items-center">
+              <span class="text-xs font-bold text-slate-700 mb-2">PRODUK B</span>
+              <svg width="140" height="140" viewBox="0 0 140 140">
+                <ellipse cx="70" cy="25" rx="50" ry="12" fill="#059669" stroke="#065f46" stroke-width="2"/>
+                <path d="M 20 25 L 35 120 Q 70 135 105 120 L 120 25" fill="#10b981" opacity="0.7" stroke="#065f46" stroke-width="2"/>
+                <!-- Lubang-lubang besar bakul plastik -->
+                <g fill="#ffffff" opacity="0.8">
+                  <rect x="40" y="45" width="10" height="8" rx="2"/><rect x="58" y="45" width="10" height="8" rx="2"/><rect x="76" y="45" width="10" height="8" rx="2"/><rect x="94" y="45" width="10" height="8" rx="2"/>
+                  <rect x="42" y="62" width="10" height="8" rx="2"/><rect x="59" y="62" width="10" height="8" rx="2"/><rect x="76" y="62" width="10" height="8" rx="2"/><rect x="92" y="62" width="10" height="8" rx="2"/>
+                  <rect x="45" y="79" width="10" height="8" rx="2"/><rect x="60" y="79" width="10" height="8" rx="2"/><rect x="75" y="79" width="10" height="8" rx="2"/><rect x="89" y="79" width="10" height="8" rx="2"/>
+                  <rect x="48" y="96" width="10" height="8" rx="2"/><rect x="62" y="96" width="10" height="8" rx="2"/><rect x="74" y="96" width="10" height="8" rx="2"/><rect x="86" y="96" width="10" height="8" rx="2"/>
+                </g>
+              </svg>
+              <span class="text-[11px] text-slate-500 font-semibold mt-1">Bakul Plastik Silinder / Bulat Berlubang</span>
+            </div>
+          </div>
+
+          <p class="text-xs font-bold text-slate-800 mb-2">
+            (a) Berdasarkan kepada Rajah 10 produk di atas, Bandingkan Dua Prinsip Dan Dua Elemen pada produk A dan B pada ruang jawapan yang disediakan [8 Markah]:
+          </p>
+
+          <!-- JADUAL PERBANDINGAN ELEMEN & PRINSIP -->
+          <div class="overflow-x-auto my-3 border rounded-xl">
+            <table class="min-w-full text-xs divide-y divide-slate-200">
+              <thead class="bg-indigo-50 font-bold text-indigo-950">
+                <tr>
+                  <th class="p-2.5 text-left w-1/3">Kategori</th>
+                  <th class="p-2.5 text-left w-1/3">PRODUK A</th>
+                  <th class="p-2.5 text-left w-1/3">PRODUK B</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                <tr>
+                  <td class="p-2.5 font-bold text-slate-700 bg-slate-50">ELEMEN 1 (Bentuk)</td>
+                  <td class="p-2"><input type="text" id="c4_e1_a" class="w-full p-2 border rounded-lg text-xs" placeholder="Bentuk Produk A..." /></td>
+                  <td class="p-2"><input type="text" id="c4_e1_b" class="w-full p-2 border rounded-lg text-xs" placeholder="Bentuk Produk B..." /></td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 font-bold text-slate-700 bg-slate-50">ELEMEN 2 (Tekstur)</td>
+                  <td class="p-2"><input type="text" id="c4_e2_a" class="w-full p-2 border rounded-lg text-xs" placeholder="Tekstur Produk A..." /></td>
+                  <td class="p-2"><input type="text" id="c4_e2_b" class="w-full p-2 border rounded-lg text-xs" placeholder="Tekstur Produk B..." /></td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 font-bold text-slate-700 bg-slate-50">PRINSIP 1 (Keseimbangan)</td>
+                  <td class="p-2"><input type="text" id="c4_p1_a" class="w-full p-2 border rounded-lg text-xs" placeholder="Prinsip 1 Produk A..." /></td>
+                  <td class="p-2"><input type="text" id="c4_p1_b" class="w-full p-2 border rounded-lg text-xs" placeholder="Prinsip 1 Produk B..." /></td>
+                </tr>
+                <tr>
+                  <td class="p-2.5 font-bold text-slate-700 bg-slate-50">PRINSIP 2 (Keringkasan)</td>
+                  <td class="p-2"><input type="text" id="c4_p2_a" class="w-full p-2 border rounded-lg text-xs" placeholder="Prinsip 2 Produk A..." /></td>
+                  <td class="p-2"><input type="text" id="c4_p2_b" class="w-full p-2 border rounded-lg text-xs" placeholder="Prinsip 2 Produk B..." /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="text-xs font-bold text-slate-800 mt-4 mb-2">
+            (b) Nyatakan dua Fungsi Produk yang terdapat pada Rajah produk di atas [2 Markah]:
+          </p>
+        `,
+        inputs: [
+          { id: "c4_f1", label: "Fungsi 1:" },
+          { id: "c4_f2", label: "Fungsi 2:" }
         ],
-        skema: "(a) Perbandingan Elemen (Bentuk segi empat vs silinder, Tekstur lubang halus vs kasar) [4m]\nPerbandingan Prinsip (Keseimbangan simetri, Keringkasan) [4m]\n(b) Fungsi: 1. Tempat pembuangan sampah, 2. Bekas pakaian kotor [2m]"
+        kriteria: [
+          { words: ["segi empat", "silinder", "lubang", "tekstur", "bentuk"], point: 4, label: "Perbandingan Elemen (Bentuk & Tekstur) [4m]" },
+          { words: ["simetri", "keseimbangan", "keringkasan"], point: 4, label: "Perbandingan Prinsip (Simetri & Keringkasan) [4m]" },
+          { words: ["sampah", "pakaian", "kotor", "tempat simpan"], point: 2, label: "Dua Fungsi Produk [2m]" }
+        ],
+        skema: `[8 Markah] Perbandingan Elemen & Prinsip:\n• Elemen Bentuk: A (Segi empat) vs B (Silinder) [2m]\n• Elemen Tekstur: A (Lubang halus/kecil) vs B (Lubang kasar/besar) [2m]\n• Prinsip Keseimbangan: A (Simetri) vs B (Simetri) [2m]\n• Prinsip Keringkasan: A (Ringkas) vs B (Ringkas) [2m]\n\n[2 Markah] Dua Fungsi Produk:\n1. Tempat mengumpul pakaian kotor [1m]\n2. Tempat pembuangan sampah [1m]`
       }
     };
 
@@ -839,7 +1205,7 @@
       el.className = `mt-4 text-center text-xs font-bold text-${warna}-600 block`;
     }
 
-    // Bina Antaramuka Borang Murid
+    // Bina UI Borang Peperiksaan
     function binaUIBorangPeperiksaan() {
       const boxA = document.getElementById("bahagianA_container");
       const boxB = document.getElementById("bahagianB_container");
@@ -849,7 +1215,7 @@
       boxB.innerHTML = "";
       boxC.innerHTML = "";
 
-      // 1. Bahagian A: S1 - S15 (Objektif)
+      // Bahagian A
       for (let i = 1; i <= 15; i++) {
         const k = `a${i}`;
         const item = DATA_SOALAN[k];
@@ -885,13 +1251,24 @@
         boxA.appendChild(card);
       }
 
-      // 2. Bahagian B: S1 - S15 (Subjektif Pendek & Padanan)
+      // Bahagian B
       for (let i = 1; i <= 15; i++) {
         const k = `b${i}`;
         const item = DATA_SOALAN[k];
         const card = document.createElement("div");
         card.id = `card_${k}`;
         card.className = "bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-3";
+
+        let inputsHtml = "";
+        if (item.inputs) {
+          inputsHtml = item.inputs.map(inp => `
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-2 bg-slate-50 border rounded-xl gap-2">
+              <span class="text-xs font-medium text-slate-700">${inp.label}</span>
+              <input type="text" id="${inp.id}" class="w-full sm:w-72 p-2 text-xs border rounded-lg uppercase" placeholder="" />
+            </div>
+          `).join("");
+        }
+
         card.innerHTML = `
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-bold text-slate-800 text-sm">SOALAN ${i}</span>
@@ -900,10 +1277,8 @@
               <span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-0.5 rounded-full font-bold">[${item.max} Markah]</span>
             </div>
           </div>
-          <p class="text-xs font-bold text-slate-800">${item.tajuk}</p>
-          <div id="inputBox_${k}" class="space-y-2 pt-1">
-            <textarea id="input_${k}" rows="2" class="w-full p-2.5 text-xs border rounded-xl focus:ring-2 focus:ring-indigo-500" placeholder="Tuliskan jawapan lengkap anda di sini..."></textarea>
-          </div>
+          ${item.soalanPenuh}
+          <div class="space-y-2 pt-1">${inputsHtml}</div>
           <div class="flex justify-between items-center pt-2 border-t text-[11px] no-print">
             <span id="badge_status_${k}" class="text-slate-400 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
             <button type="button" onclick="hantarSoalanTunggal('${k}')" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow transition">Simpan Soalan B${i}</button>
@@ -912,13 +1287,34 @@
         boxB.appendChild(card);
       }
 
-      // 3. Bahagian C: S1 - S4 (Aplikasi Reka Bentuk)
+      // Bahagian C
       for (let i = 1; i <= 4; i++) {
         const k = `c${i}`;
         const item = DATA_SOALAN[k];
         const card = document.createElement("div");
         card.id = `card_${k}`;
-        card.className = "bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-3";
+        card.className = "bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-4";
+
+        let inputsHtml = "";
+        if (item.inputs) {
+          inputsHtml = item.inputs.map(inp => `
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-2 bg-slate-50 border rounded-xl gap-2">
+              <span class="text-xs font-medium text-slate-700">${inp.label}</span>
+              <input type="text" id="${inp.id}" class="w-full sm:w-80 p-2 text-xs border rounded-lg" placeholder="" />
+            </div>
+          `).join("");
+        }
+
+        let extraTextareaHtml = "";
+        if (item.extraTextarea) {
+          extraTextareaHtml = `
+            <div class="space-y-1 pt-2">
+              <label class="block text-xs font-bold text-slate-700">${item.extraTextarea.label}</label>
+              <textarea id="${item.extraTextarea.id}" rows="${item.extraTextarea.rows}" class="w-full p-2.5 text-xs border rounded-xl focus:ring-2 focus:ring-indigo-500" placeholder="Tuliskan huraian jawapan di sini..."></textarea>
+            </div>
+          `;
+        }
+
         card.innerHTML = `
           <div class="flex justify-between items-center border-b pb-2">
             <span class="font-bold text-slate-800 text-sm">SOALAN ${i}</span>
@@ -927,11 +1323,9 @@
               <span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-0.5 rounded-full font-bold">[${item.max} Markah]</span>
             </div>
           </div>
-          <p class="text-xs font-bold text-slate-800">${item.tajuk}</p>
-          <div class="space-y-2">
-            <label class="block text-[11px] font-bold text-slate-600">Jawapan dan Huraian Calon:</label>
-            <textarea id="input_${k}" rows="5" class="w-full p-3 text-xs border rounded-xl focus:ring-2 focus:ring-indigo-500" placeholder="Huraikan jawapan anda mengikut pecahan soalan (a), (b), (c)..."></textarea>
-          </div>
+          ${item.soalanPenuh}
+          <div class="space-y-2 pt-1">${inputsHtml}</div>
+          ${extraTextareaHtml}
           <div class="flex justify-between items-center pt-2 border-t text-[11px] no-print">
             <span id="badge_status_${k}" class="text-slate-400 font-medium"><i class="fa-solid fa-clock mr-1"></i> Belum dihantar</span>
             <button type="button" onclick="hantarSoalanTunggal('${k}')" class="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg shadow transition">Simpan Soalan C${i}</button>
@@ -945,10 +1339,50 @@
       if (key.startsWith("a")) {
         const rad = document.querySelector(`input[name="ans_${key}"]:checked`);
         return rad ? rad.value : "";
-      } else {
-        const el = document.getElementById(`input_${key}`);
-        return el ? el.value.trim() : "";
+      } else if (key.startsWith("b")) {
+        const item = DATA_SOALAN[key];
+        if (item && item.inputs) {
+          return item.inputs.map(inp => {
+            const el = document.getElementById(inp.id);
+            return el ? el.value.trim() : "";
+          }).join(" | ");
+        }
+      } else if (key === "c1") {
+        const p1 = document.getElementById("c1_a1") ? document.getElementById("c1_a1").value.trim() : "";
+        const p2 = document.getElementById("c1_a2") ? document.getElementById("c1_a2").value.trim() : "";
+        const p3 = document.getElementById("c1_a3") ? document.getElementById("c1_a3").value.trim() : "";
+        const p4 = document.getElementById("c1_b") ? document.getElementById("c1_b").value.trim() : "";
+        return `(a) ${p1}, ${p2}, ${p3} | (b) ${p4}`;
+      } else if (key === "c2") {
+        const huraian = document.getElementById("c2_a") ? document.getElementById("c2_a").value.trim() : "";
+        const e1 = document.getElementById("c2_elemen1") ? document.getElementById("c2_elemen1").value.trim() : "";
+        const e2 = document.getElementById("c2_elemen2") ? document.getElementById("c2_elemen2").value.trim() : "";
+        const pr1 = document.getElementById("c2_prinsip1") ? document.getElementById("c2_prinsip1").value.trim() : "";
+        const pr2 = document.getElementById("c2_prinsip2") ? document.getElementById("c2_prinsip2").value.trim() : "";
+        return `(a) ${huraian} | (b) Elemen: ${e1}, ${e2} | Prinsip: ${pr1}, ${pr2}`;
+      } else if (key === "c3") {
+        const a1 = document.getElementById("c3_a1") ? document.getElementById("c3_a1").value.trim() : "";
+        const a2 = document.getElementById("c3_a2") ? document.getElementById("c3_a2").value.trim() : "";
+        const a3 = document.getElementById("c3_a3") ? document.getElementById("c3_a3").value.trim() : "";
+        const b1 = document.getElementById("c3_b1") ? document.getElementById("c3_b1").value.trim() : "";
+        const b2 = document.getElementById("c3_b2") ? document.getElementById("c3_b2").value.trim() : "";
+        const b3 = document.getElementById("c3_b3") ? document.getElementById("c3_b3").value.trim() : "";
+        const c_desc = document.getElementById("c3_c") ? document.getElementById("c3_c").value.trim() : "";
+        return `(a) Asas: ${a1}, ${a2}, ${a3} | (b) Sekunder: ${b1}, ${b2}, ${b3} | (c) ${c_desc}`;
+      } else if (key === "c4") {
+        const e1_a = document.getElementById("c4_e1_a") ? document.getElementById("c4_e1_a").value.trim() : "";
+        const e1_b = document.getElementById("c4_e1_b") ? document.getElementById("c4_e1_b").value.trim() : "";
+        const e2_a = document.getElementById("c4_e2_a") ? document.getElementById("c4_e2_a").value.trim() : "";
+        const e2_b = document.getElementById("c4_e2_b") ? document.getElementById("c4_e2_b").value.trim() : "";
+        const p1_a = document.getElementById("c4_p1_a") ? document.getElementById("c4_p1_a").value.trim() : "";
+        const p1_b = document.getElementById("c4_p1_b") ? document.getElementById("c4_p1_b").value.trim() : "";
+        const p2_a = document.getElementById("c4_p2_a") ? document.getElementById("c4_p2_a").value.trim() : "";
+        const p2_b = document.getElementById("c4_p2_b") ? document.getElementById("c4_p2_b").value.trim() : "";
+        const f1 = document.getElementById("c4_f1") ? document.getElementById("c4_f1").value.trim() : "";
+        const f2 = document.getElementById("c4_f2") ? document.getElementById("c4_f2").value.trim() : "";
+        return `(a) Elemen1: A=${e1_a}, B=${e1_b} | Elemen2: A=${e2_a}, B=${e2_b} | Prinsip1: A=${p1_a}, B=${p1_b} | Prinsip2: A=${p2_a}, B=${p2_b} | (b) F1: ${f1}, F2: ${f2}`;
       }
+      return "";
     }
 
     function pasangJawapan(key, val) {
@@ -956,9 +1390,61 @@
       if (key.startsWith("a")) {
         const rad = document.querySelector(`input[name="ans_${key}"][value="${val}"]`);
         if (rad) rad.checked = true;
-      } else {
-        const el = document.getElementById(`input_${key}`);
-        if (el) el.value = val;
+      } else if (key.startsWith("b")) {
+        const parts = val.split(" | ");
+        const item = DATA_SOALAN[key];
+        if (item && item.inputs) {
+          item.inputs.forEach((inp, idx) => {
+            const el = document.getElementById(inp.id);
+            if (el && parts[idx]) el.value = parts[idx];
+          });
+        }
+      } else if (key === "c1") {
+        const parts = val.split(" | ");
+        if (parts[0]) {
+          const sub = parts[0].replace("(a) ", "").split(", ");
+          if (sub[0] && document.getElementById("c1_a1")) document.getElementById("c1_a1").value = sub[0];
+          if (sub[1] && document.getElementById("c1_a2")) document.getElementById("c1_a2").value = sub[1];
+          if (sub[2] && document.getElementById("c1_a3")) document.getElementById("c1_a3").value = sub[2];
+        }
+        if (parts[1] && document.getElementById("c1_b")) {
+          document.getElementById("c1_b").value = parts[1].replace("(b) ", "");
+        }
+      } else if (key === "c4") {
+        const parts = val.split(" | ");
+        parts.forEach(p => {
+          if (p.includes("Elemen1:")) {
+            const m = p.match(/A=(.*),\s*B=(.*)/);
+            if (m) {
+              if (document.getElementById("c4_e1_a")) document.getElementById("c4_e1_a").value = m[1];
+              if (document.getElementById("c4_e1_b")) document.getElementById("c4_e1_b").value = m[2];
+            }
+          } else if (p.includes("Elemen2:")) {
+            const m = p.match(/A=(.*),\s*B=(.*)/);
+            if (m) {
+              if (document.getElementById("c4_e2_a")) document.getElementById("c4_e2_a").value = m[1];
+              if (document.getElementById("c4_e2_b")) document.getElementById("c4_e2_b").value = m[2];
+            }
+          } else if (p.includes("Prinsip1:")) {
+            const m = p.match(/A=(.*),\s*B=(.*)/);
+            if (m) {
+              if (document.getElementById("c4_p1_a")) document.getElementById("c4_p1_a").value = m[1];
+              if (document.getElementById("c4_p1_b")) document.getElementById("c4_p1_b").value = m[2];
+            }
+          } else if (p.includes("Prinsip2:")) {
+            const m = p.match(/A=(.*),\s*B=(.*)/);
+            if (m) {
+              if (document.getElementById("c4_p2_a")) document.getElementById("c4_p2_a").value = m[1];
+              if (document.getElementById("c4_p2_b")) document.getElementById("c4_p2_b").value = m[2];
+            }
+          } else if (p.includes("(b)")) {
+            const m = p.match(/F1:\s*(.*),\s*F2:\s*(.*)/);
+            if (m) {
+              if (document.getElementById("c4_f1")) document.getElementById("c4_f1").value = m[1];
+              if (document.getElementById("c4_f2")) document.getElementById("c4_f2").value = m[2];
+            }
+          }
+        });
       }
     }
 
